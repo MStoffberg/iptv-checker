@@ -1,0 +1,40 @@
+name: Update free IPTV playlist
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg python3 gzip
+
+      - name: Run IPTV checker
+        run: |
+          python3 scripts/check_iptv.py
+
+      - name: Commit updated playlist and EPG
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add output/working.m3u output/broken.txt output/epg.xml.gz output/source.m3u
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update working IPTV playlist and EPG"
+            git push
+          fi
