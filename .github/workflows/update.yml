@@ -25,16 +25,39 @@ jobs:
         run: |
           python3 scripts/check_iptv.py
 
-      - name: Commit updated playlist and EPG
+      - name: Show final report in console
+        run: |
+          echo ""
+          echo "========== Generated files =========="
+          find public -maxdepth 3 -type f -print | sort
+          echo ""
+          echo "========== Report summary =========="
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path("public/data/report.json").read_text())
+
+          print(f"Started: {report['started_at']}")
+          print(f"Finished: {report['finished_at']}")
+          print(f"Total channels: {report['total_channels']}")
+          print(f"Working channels: {report['working_channels']}")
+          print(f"Broken channels: {report['broken_channels']}")
+          print(f"Success rate: {report['success_rate_percent']}%")
+          print(f"EPG channels: {report['epg']['channel_count']}")
+          print(f"EPG programme lines: {report['epg']['programme_count']}")
+          PY
+
+      - name: Commit updated public files
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add output/working.m3u output/broken.txt output/epg.xml.gz output/source.m3u
+          git add public/
 
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Update working IPTV playlist and EPG"
+            git commit -m "Update free IPTV playlist, EPG, and status page"
             git push
           fi
