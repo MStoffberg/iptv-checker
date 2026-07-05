@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>StoffCore Free TV Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+  <main>
+    <h1>StoffCore Free TV Status</h1>
+
+    <p id="run-time" class="muted">Loading report...</p>
+
+    <section class="cards">
+      <div class="card">
+        <div>Total channels tested</div>
+        <div id="total-channels" class="number">-</div>
+      </div>
+
+      <div class="card">
+        <div>Working channels</div>
+        <div id="working-channels" class="number good">-</div>
+      </div>
+
+      <div class="card">
+        <div>Broken channels</div>
+        <div id="broken-channels" class="number bad">-</div>
+      </div>
+
+      <div class="card">
+        <div>Success rate</div>
+        <div id="success-rate" class="number">-</div>
+      </div>
+
+      <div class="card">
+        <div>EPG channels</div>
+        <div id="epg-channels" class="number">-</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Dispatcharr URLs</h2>
+
+      <p>
+        M3U:
+        <code>https://stoffbergsaalih.github.io/stoffcore-free-tv/working.m3u</code>
+      </p>
+
+      <p>
+        EPG:
+        <code>https://stoffbergsaalih.github.io/stoffcore-free-tv/epg.xml.gz</code>
+      </p>
+
+      <p>
+        <a href="working.m3u">working.m3u</a>
+        <a href="epg.xml.gz">epg.xml.gz</a>
+        <a href="broken.txt">broken.txt</a>
+        <a href="data/check.log">check.log</a>
+        <a href="data/report.json">report.json</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Group stats</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>Total</th>
+            <th>Working</th>
+            <th>Broken</th>
+            <th>Success</th>
+          </tr>
+        </thead>
+        <tbody id="group-stats"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>EPG sources</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>URL</th>
+            <th>Channels</th>
+            <th>Programmes</th>
+            <th>Error</th>
+          </tr>
+        </thead>
+        <tbody id="epg-sources"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Broken channels</h2>
+      <p class="muted">Showing first 200 broken channels. Full list is in broken.txt and report.json.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Group</th>
+            <th>Error</th>
+            <th>URL</th>
+          </tr>
+        </thead>
+        <tbody id="broken-list"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
