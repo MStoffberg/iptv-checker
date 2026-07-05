@@ -1,4 +1,3 @@
 https://iptv-org.github.io/epg/guides/za.xml.gz
+https://iptv-org.github.io/epg/guides/gb.xml.gz
 https://iptv-org.github.io/epg/guides/us.xml.gz
-https://iptv-org.github.io/epg/guides/uk.xml.gz
-https://iptv-epg.org/files/epg-za.xml.gz

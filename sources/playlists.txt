@@ -1,4 +1,6 @@
 https://iptv-org.github.io/iptv/countries/za.m3u
+https://iptv-org.github.io/iptv/countries/gb.m3u
+https://iptv-org.github.io/iptv/countries/us.m3u
 https://iptv-org.github.io/iptv/categories/news.m3u
 https://iptv-org.github.io/iptv/categories/kids.m3u
 https://iptv-org.github.io/iptv/categories/documentary.m3u
